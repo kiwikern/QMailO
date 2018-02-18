@@ -4,7 +4,7 @@
   "description": "Organize your .qmail files",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kim Kern <github@kimkern.de>",
@@ -12,6 +12,8 @@
   "devDependencies": {},
   "dependencies": {
     "fs-extra": "^5.0.0",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
     "winston": "^2.4.0"
   }
 }

@@ -5,15 +5,30 @@ const path = require('../../config').path;
 class QMailFinder {
 
   async readFiles(filter) {
+    log.debug(`readFiles()`, {filter});
     await this._checkPath();
+    const fileNames = await this._findFileNames(filter);
+    return await this._getFileContents(fileNames);
+  }
 
+  async _getFileContents(fileNames) {
+    return Promise.all(fileNames.map(async name => {
+      const content = await fs.readFile(`${path}/${name}`) + '';
+      log.debug('found content', {name, content});
+      return {name, content};
+    }));
+  }
+
+  async _findFileNames(filter) {
     try {
       const files = (await fs.readdir(path))
         .filter(filename => filename.startsWith('.qmail-'))
         .filter(filename => !filter || this._fileMatchesFilter(filename, filter));
       log.debug(files);
+      return files;
     } catch (error) {
       log.error(error);
+      throw new Error(`Could not find file names. ${error}`);
     }
   }
 
@@ -26,8 +41,10 @@ class QMailFinder {
   }
 
   _fileMatchesFilter(filename, filter) {
-      const normalizedFilter = (filter + '').trim().toLowerCase();
-      return filename.toLowerCase().includes(normalizedFilter);
+    const normalizedFilter = (filter + '').trim().toLowerCase();
+    const normalizedFileName = filename.toLowerCase().substring(7);
+    log.debug('', {normalizedFilter, normalizedFileName});
+    return normalizedFileName.includes(normalizedFilter);
   }
 
 }
