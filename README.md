@@ -8,6 +8,7 @@ You can use the API to write your own scripts or frontend, or use the correspond
  
  * Clone the repository `git clone https://github.com/kiwikern/qmailo.git`
  * `cd qmailo`
- * Run `node src/setup.js` (Make sure, you are in the root directory `qmailo`.)
+ * Run `npm install`
+ * Run `npm run setup` (Make sure you are in the root directory `qmailo`.)
  * Run `npm start` to start the server. 
  * If you're using it on Ubserspace, you can also [add it as an service](https://wiki.uberspace.de/system:daemontools).
