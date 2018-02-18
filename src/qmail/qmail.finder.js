@@ -28,7 +28,10 @@ class QMailFinder {
       return files;
     } catch (error) {
       log.error(error);
-      throw new Error(`Could not find file names. ${error}`);
+      throw {
+        key: 'internal_error',
+        message: `Could not find file names for: ${filter}`
+      };
     }
   }
 
@@ -36,7 +39,10 @@ class QMailFinder {
     const hasPath = await fs.exists(path);
     if (!hasPath) {
       log.error('Path could not be found.', path);
-      throw new Error(`Path ${path} could not be found`);
+      throw {
+        key: 'invalid_path',
+        message: `Path ${path} could not be found`
+      };
     }
   }
 
