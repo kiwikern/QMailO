@@ -4,16 +4,20 @@
   "description": "Organize your .qmail files",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "node src/index.js"
   },
   "author": "Kim Kern <github@kimkern.de>",
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "fs-extra": "^5.0.0",
+    "inquirer": "^5.1.0",
+    "jsonwebtoken": "^8.1.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-jwt": "^3.3.0",
     "koa-router": "^7.4.0",
     "winston": "^2.4.0"
   }

@@ -1,10 +1,12 @@
 const config = require('../config.js');
 const log = require('./logger').getLogger('Application');
 const Koa = require('koa');
+const jwt = require('koa-jwt');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const QMailFinder = require('./qmail/qmail.finder');
 const QMailCreator = require('./qmail/qmail.creator');
+const Authenticator = require('./auth/authenticator');
 require('./logger').setLogLevel(config.loglevel);
 
 class Application {
@@ -13,10 +15,20 @@ class Application {
     this.router = new Router();
     this.finder = new QMailFinder();
     this.creator = new QMailCreator();
+    this.authenticator = new Authenticator();
   }
 
   run() {
-    this.router.get('/files', async ctx => {
+    this.router.post('/login', async ctx => {
+      try {
+        ctx.body = await this.authenticator.login(ctx.request.body || {});
+      } catch (err) {
+        ctx.body = err.message || err + '';
+        ctx.response.status = this._getReturnCode(err.key)
+      }
+    });
+
+    this.router.get('/files', jwt({secret: config.jwtsecret}), async ctx => {
       const search = ctx.request.query.search;
       try {
         ctx.body = await this.finder.readFiles(search);
@@ -26,7 +38,7 @@ class Application {
       }
     });
 
-    this.router.put('/files', async ctx => {
+    this.router.put('/files', jwt({secret: config.jwtsecret}), async ctx => {
       const newFile = ctx.request.body;
       try {
         ctx.body = await this.creator.createFile(newFile || {}, false);
@@ -36,7 +48,7 @@ class Application {
       }
     });
 
-    this.router.post('/files', async ctx => {
+    this.router.post('/files', jwt({secret: config.jwtsecret}), async ctx => {
       const newFile = ctx.request.body;
       try {
         ctx.body = await this.creator.createFile(newFile || {}, true);
@@ -62,8 +74,10 @@ class Application {
       case 'qmail_prefix':
       case 'missing_filename':
       case 'missing_content':
+      case 'missing_password':
         return 400;
-
+      case 'wrong_password':
+        return 401;
       case 'invalid_path':
       case 'internal_error':
       default:

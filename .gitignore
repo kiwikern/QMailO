@@ -62,3 +62,7 @@ typings/
 
 #project files
 .idea/
+
+testresources/
+
+config.js
