@@ -4,8 +4,14 @@
   "description": "Organize your .qmail files",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kim Kern <github@kimkern.de>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "winston": "^2.4.0"
+  }
 }
