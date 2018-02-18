@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const config = require('../../config');
 const log = require('../logger').getLogger('PasswordUtil');
 
 class PasswordUtil {
@@ -18,7 +17,8 @@ class PasswordUtil {
 
   checkPassword(password) {
     return new Promise((resolve, reject) => {
-      bcrypt.compare(password, config.password, (err, isValid) => {
+      const storedPassword = require('../../config').password;
+      bcrypt.compare(password, storedPassword, (err, isValid) => {
         if (isValid) {
           return resolve();
         } else {
