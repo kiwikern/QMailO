@@ -4,16 +4,17 @@ const path = require('../../config').path;
 
 class QMailCreator {
 
-  async createFile({name, content}, isUpdate) {
-    log.debug(`createFile()`, {name, content});
+  async createFile({id, content}, isUpdate) {
+    log.debug(`createFile()`, {id, content, isUpdate});
     await this._checkPath();
-    const fileName = await this._checkFile(name, isUpdate);
+    const fileName = await this._checkFile(id, isUpdate);
     this._checkContent(content);
 
     return await this._createFile(fileName, content);
   }
 
   async _createFile(name, content) {
+    log.debug(`_createFile()`, {name, content});
     try {
       await fs.writeFile(`${path}/.qmail-${name}`, content);
     } catch (err) {
@@ -55,7 +56,7 @@ class QMailCreator {
       };
     }
 
-    const fileName = name.trim().toLowerCase();
+    const fileName = name.trim();
 
     if (fileName.startsWith('.qmail')) {
       log.error('File should not start with .qmail.', fileName);

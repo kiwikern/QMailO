@@ -25,7 +25,7 @@ class Authenticator {
     try {
       const jwtOptions = {algorithm: 'HS256', expiresIn: `${jwtDuration}d`};
       log.debug('token expires in', jwtOptions.expiresIn);
-      return jwt.sign({}, jwtSecret, jwtOptions);
+      return {jwt: jwt.sign({}, jwtSecret, jwtOptions)};
     } catch (error) {
       log.error('could not generate token', error);
       throw {key: 'internal_error', message: 'Could not generate token.'};

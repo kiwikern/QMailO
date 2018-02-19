@@ -15,7 +15,7 @@ class QMailFinder {
     return Promise.all(fileNames.map(async name => {
       const content = await fs.readFile(`${path}/${name}`) + '';
       log.debug('found content', {name, content});
-      return {name, content};
+      return {id: name.substring(7), content};
     }));
   }
 
