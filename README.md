@@ -14,19 +14,17 @@ You can use the API to write your own scripts or frontend, or use the correspond
  * If you're using it on Ubserspace, you can also [add it as an service](https://wiki.uberspace.de/system:daemontools).
 
 
-## Usage
+## Endpoints
 
-### Endpoints
-
-#### /login
+### /login
+* no authorization required
 * POST
-  * unauthorized
   * request body (json):
     * password (required): The password you chose during the setup.
   * returns JWT token for authorized access of `/files` endpoint
   * example: `curl -X POST -H "Content-Type: application/json" -d '{"password": "test"}' localhost:30000/login`
     
-#### /files
+### /files
 * authorized with JWT token obtained with the login method
 * GET
   * query parameters:
