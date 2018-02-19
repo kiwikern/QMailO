@@ -28,16 +28,20 @@ You can use the API to write your own scripts or frontend, or use the correspond
 * authorized with JWT token obtained with the login method
 * GET
   * query parameters:
-    * search (optional): filter by file id.
-  * returns a list of all .qmail files in the format `{id: string, content: string}`
+    * search (optional): filter by file name.
+  * returns a list of all .qmail files without the `.qmail-` prefix in the format `{id: string, content: string}`
 * PUT
   * request body (json):
-    * id (required): file id without the `.qmail-` prefix
+    * id (required): file name without the `.qmail-` prefix
     * content (required): content of the .qmail file
   * creates a new .qmail file. Does not override existing ones.
 * POST
   * request body (json):
-    * id (required): file id without the `.qmail-` prefix
+    * id (required): file name without the `.qmail-` prefix
     * content (required): content of the .qmail file
   * updates an existing .qmail file. Does not create new ones.
     
+### /files/:id
+* DELETE
+  * url param `:id`: file name without the `.qmail-` prefix
+  * deletes the given file if found

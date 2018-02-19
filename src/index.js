@@ -58,6 +58,17 @@ class Application {
       }
     });
 
+    this.router.delete('/files/:id', jwt({secret: config.jwtsecret}), async ctx => {
+      const id = ctx.params.id;
+      log.debug('DELETE /files', {id});
+      try {
+        ctx.body = await this.creator.deleteFile(id);
+      } catch (err) {
+        ctx.body = err.message || err + '';
+        ctx.response.status = this._getReturnCode(err.key)
+      }
+    });
+
     this.app
       .use(bodyParser())
       .use(this.router.routes())
@@ -75,6 +86,7 @@ class Application {
       case 'missing_filename':
       case 'missing_content':
       case 'missing_password':
+      case 'illegal_character':
         return 400;
       case 'wrong_password':
         return 401;

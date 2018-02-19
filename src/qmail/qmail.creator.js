@@ -13,6 +13,13 @@ class QMailCreator {
     return await this._createFile(fileName, content);
   }
 
+  async deleteFile(id) {
+    log.debug('deleteFile()', {id});
+    await this._checkPath();
+    await this._checkFile(id, true);
+    return await this._deleteFile(id);
+  }
+
   async _createFile(name, content) {
     log.debug(`_createFile()`, {name, content});
     try {
@@ -22,6 +29,19 @@ class QMailCreator {
       throw {
         key: 'internal_error',
         message: `Could not create file.`
+      };
+    }
+  }
+
+  async _deleteFile(name) {
+    log.debug(`_deleteFile()`, {name});
+    try {
+      await fs.unlink(`${path}/.qmail-${name}`);
+    } catch (err) {
+      log.error('Could not delete file.', {name});
+      throw {
+        key: 'internal_error',
+        message: `Could not delete file.`
       };
     }
   }
@@ -54,6 +74,14 @@ class QMailCreator {
         key: 'missing_filename',
         message: `No filename was given.`
       };
+    }
+
+    if (/[\.\s\\\/\?%\*:|<>]/.test(name)) {
+      log.error('Contains illegal character.', name);
+      throw {
+        key: 'illegal_character',
+        message: 'Given name contains illegal characters.'
+      }
     }
 
     const fileName = name.trim();
