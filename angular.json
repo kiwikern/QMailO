@@ -17,7 +17,7 @@
             "polyfills": "apps/qmailo/src/polyfills.ts",
             "tsConfig": "apps/qmailo/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/qmailo/src/favicon.ico", "apps/qmailo/src/assets"],
+            "assets": ["apps/qmailo/src/favicon.ico", "apps/qmailo/src/assets","apps/qmailo/src/manifest.json", "apps/qmailo/src/.htaccess"],
             "styles": ["apps/qmailo/src/styles.css"],
             "scripts": []
           },
@@ -37,6 +37,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json",
               "budgets": [
                 {
                   "type": "initial",

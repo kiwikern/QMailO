@@ -1,0 +1,14 @@
+.gray {
+color: rgba(0, 0, 0, .38)
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+}

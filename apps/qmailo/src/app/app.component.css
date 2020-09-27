@@ -1,0 +1,10 @@
+.container {
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host ::ng-deep router-outlet + * {
+  flex: 1;
+}

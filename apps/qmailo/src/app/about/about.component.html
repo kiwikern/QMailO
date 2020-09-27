@@ -1,0 +1,41 @@
+<p>
+  <span style="font-size: xx-large" i18n="welcome message@@about:welcome">
+    Hi, I'm
+    <a href="https://kimkern.de" target="_blank">Kim</a>
+  </span>
+</p>
+<p i18n="motivation paragraph|my motivation with uberspace@@about:uberspace">
+  and I love using
+  <a href="https://uberspace.de" target="_blank">Uberspace</a>
+  for hosting my projects and organizing my mails. Since I use different mail addresses for every service and contact,
+  I have a lot of <code>.qmail</code> files lying around.
+</p>
+
+<p i18n="praise paragraph|donate or share@@about:praise">
+  If you like this tool,
+  <a (click)="share()">share it</a>
+  with your friends, make a pull request or
+  <a href="https://paypal.me/kiwikern" target="_blank">buy me a drink</a>
+  . ;-)
+</p>
+
+<p i18n="help paragraph|links to github readmes@@about:help">
+  If you're having problems, check out the instructions in the
+  <a href="https://github.com/kiwikern/QMailO/blob/master/README.md" target="_blank">server readme</a>
+  and the
+  <a href="https://github.com/kiwikern/QMailO-Frontend/blob/master/README.md" target="_blank">frontend readme</a>.
+</p>
+
+<p i18n="feedback paragraph|Happy about feedback@@about:feedback">
+  I'm very happy about any kind of feedback, feel free to send me an
+  <a href="mailto:qmailo@kimkern.de" target="_blank">e-mail</a>
+  or open an issue on GitHub for the
+  <a href="https://github.com/kiwikern/QMailO-Frontend/issues" target="_blank">frontend</a>
+  or the
+  <a href="https://github.com/kiwikern/QMailO/issues" target="_blank">server</a>
+  .
+</p>
+<div class="center">
+  <button (click)="share()" mat-icon-button><mat-icon>share</mat-icon></button>
+  <p>Version: {{ appVersion }}</p>
+</div>

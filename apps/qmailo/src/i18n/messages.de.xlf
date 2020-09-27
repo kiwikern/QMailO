@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="de" datatype="plaintext" original="ng2.template" target-language="de">
+    <body>
+      <trans-unit id="about:welcome" datatype="html">
+        <source>
+          Hi, I'm
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Kim
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">welcome message</note>
+        <target state="translated">
+          Hi, ich bin
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Kim
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+        </target>
+      </trans-unit>
+      <trans-unit id="about:uberspace" datatype="html">
+        <source>
+          and I love using
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Uberspace
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          for hosting my projects and organizing my mails. Since I use different mail addresses for every service and
+          contact,
+          I have a lot of<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code>"/>.qmail
+          <x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code>"/>
+          files lying around.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">my motivation with uberspace</note>
+        <note priority="1" from="meaning">motivation paragraph</note>
+        <target state="translated">
+          und ich finde
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Uberspace
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          super, um meine Projekte zu hosten und meine E-Mail-Adressen zu organsieren. Weil ich für jeden Service und
+          Kontakt
+          eigene E-Mail-Adressen verwende, habe ich sehr viele
+          <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code>"/>
+          .qmail
+          <x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code>"/>
+          Dateien herumliegen.
+        </target>
+      </trans-unit>
+      <trans-unit id="about:praise" datatype="html">
+        <source>
+          If you like this tool,
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>share it
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          with your friends, make a pull request or
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>buy me a drink
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          . ;-)
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">donate or share</note>
+        <note priority="1" from="meaning">praise paragraph</note>
+        <target state="translated">
+          Wenn dir dieses Tool gefällt,
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>teile es
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          mit deinen Freunden, mach einen pull request oder
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>gib mir 'ne Cola aus
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          . ;-)
+        </target>
+      </trans-unit>
+      <trans-unit id="about:help" datatype="html">
+        <source>
+          If you're having problems, check out the instructions in the
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>server readme
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          and the
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>frontend readme<x id="CLOSE_LINK" ctype="x-a"
+                                                                                  equiv-text="&lt;/a>"/>.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">links to github readmes</note>
+        <note priority="1" from="meaning">help paragraph</note>
+        <target state="translated">
+          Falls du auf Probleme triffst, schau dir mal die Hinweise im
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Server Readme
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          und
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>Frontend Readme
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          an.
+        </target>
+      </trans-unit>
+      <trans-unit id="about:feedback" datatype="html">
+        <source>
+          I'm very happy about any kind of feedback, feel free to send me an
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>e-mail
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          or open an issue on GitHub for the
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>frontend
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          or the
+          <x id="START_LINK_2" ctype="x-a" equiv-text="&lt;a>"/>server
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          .
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">Happy about feedback</note>
+        <note priority="1" from="meaning">feedback paragraph</note>
+        <target state="translated">
+          Ich freue mich total über jegliches Feedback, schreib mir gerne eine
+          <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>E-Mail
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          oder mach ein Issue auf GitHub für das
+          <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>Frontend
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          oder den
+          <x id="START_LINK_2" ctype="x-a" equiv-text="&lt;a>"/>Server
+          <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+          auf.
+        </target>
+      </trans-unit>
+      <trans-unit id="login:title" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login-component/login.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <target state="final">Login</target>
+      </trans-unit>
+      <trans-unit id="login:subtitle" datatype="html">
+        <source>
+          Login with the password from your server setup.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login-component/login.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <target state="translated">
+          Melde dich mit dem Passwort an, das du beim Server-Setup gewählt hast.
+        </target>
+      </trans-unit>
+      <trans-unit id="login:password" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login-component/login.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <target state="final">Passwort</target>
+      </trans-unit>
+      <trans-unit id="login:login" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login-component/login.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <target state="final">Anmelden</target>
+      </trans-unit>
+      <trans-unit id="files-list:search field" datatype="html">
+        <source>Search field</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/files-list/files-list.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <target state="final">Suchfeld</target>
+      </trans-unit>
+      <trans-unit id="file-list:content" datatype="html">
+        <source>Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/files-list/files-list.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <target state="final">Inhalt</target>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-form/file-form.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <target state="final">Name</target>
+      </trans-unit>
+      <trans-unit id="file-form:id-error" datatype="html">
+        <source>Name includes prohibited characters.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-form/file-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <target state="final">Name beinhaltet nicht erlaubte Zeichen</target>
+      </trans-unit>
+      <trans-unit id="4ab4cb601522b9194922554d934c4c30bd93567d" datatype="html">
+        <source>Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-form/file-form.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <target state="final">Inhalt</target>
+      </trans-unit>
+      <trans-unit id="file-form:add" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-form/file-form.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <target state="final">Hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="file-form:edit" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-form/file-form.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <target state="final">Bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="settings:title" datatype="html">
+        <source>
+          Settings
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/settings/settings.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <target state="translated">
+          Einstellungen
+        </target>
+      </trans-unit>
+      <trans-unit id="settings:default-content-placeholder" datatype="html">
+        <source>Default content for new files</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/settings/settings.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <target state="final">Standard-Inhalt für neue Dateien</target>
+      </trans-unit>
+      <trans-unit id="file-edit-form:title" datatype="html">
+        <source>Edit this file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-edit-form/file-edit-form.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <target state="final">Bearbeite diese Datei</target>
+      </trans-unit>
+      <trans-unit id="add-file-form:title" datatype="html">
+        <source>Add a new file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/files/file-add-form/file-add-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <target state="translated">Füge eine neue Datei hinzu</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

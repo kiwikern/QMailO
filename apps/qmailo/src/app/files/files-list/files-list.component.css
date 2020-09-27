@@ -1,0 +1,49 @@
+:host {
+  max-width: 800px;
+}
+
+@media (max-width: 800px) {
+  :host {
+    max-width: 95vw;
+  }
+}
+
+.filter {
+  margin: 0 10px;
+}
+
+.filter.small {
+  flex: 0 1 100px;
+}
+
+.filter.stretch {
+  flex: 1;
+}
+
+.scrollable {
+  max-height: 80vh;
+}
+
+/* Table header row */
+mat-header-row {
+  /*https://github.com/angular/material2/issues/5885*/
+  position: sticky;
+  top: -.5px;
+  background: white;
+  z-index: 100;
+}
+
+.preserve-spaces {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  display: block;
+}
+
+::ng-deep .mat-form-field .mat-form-field-infix {
+  width: auto;
+}
+
+.clear {
+  color: gray;
+}

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button *ngIf="showBackNavigation" mat-icon-button type="button" routerLink="/files">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button *ngIf="!showBackNavigation" mat-icon-button type="button" disabled="true">
+    <mat-icon style="color: white">mail</mat-icon>
+  </button>
+  <span>QMailO</span>
+  <span style="flex: 1"></span>
+  <button mat-icon-button type="button" routerLink="/about">
+    <mat-icon>help_</mat-icon>
+  </button>
+  <button *ngIf="jwt$ | async" mat-icon-button type="button" routerLink="/files/settings">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button *ngIf="jwt$ | async" mat-icon-button type="button" (click)="reload()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <button *ngIf="jwt$ | async" mat-icon-button type="button" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

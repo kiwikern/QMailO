@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title i18n="@@settings:title">
+    Settings
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <textarea matInput matTextareaAutosize
+                [ngModel]="defaultContent$ | async"
+                (ngModelChange)="changeSetting('defaultContent', $event)"
+                type="url"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="off"
+                placeholder="Default content for new files"
+                i18n-placeholder="@@settings:default-content-placeholder"></textarea>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

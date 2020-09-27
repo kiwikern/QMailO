@@ -1,0 +1,47 @@
+<form #form="ngForm" (ngSubmit)="saveFile()">
+  <mat-card>
+    <!-- Must not be at last position because of ::last-child for mat-card -->
+    <mat-progress-bar class="full-width" mode="indeterminate" *ngIf="showLoadingAnimation"></mat-progress-bar>
+    <mat-card-title>
+      {{title}}
+    </mat-card-title>
+
+    <mat-card-content>
+      <mat-form-field>
+        <span matPrefix class="gray">.qmail-</span>
+        <input matInput
+               #name
+               name="id"
+               placeholder="Name"
+               i18n-placeholder
+               pattern="[^\.^\s^\\^/^\?^%^\*^:^|^<^>]+"
+               [(ngModel)]="id"
+               [disabled]="!isNew"
+               required
+               type="url"
+               autocorrect="off"
+               autocapitalize="none">
+        <mat-error *ngIf="name.validity && name.value" i18n="@@file-form:id-error">Name includes prohibited characters.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput matTextareaAutosize name="content" placeholder="Content" i18n-placeholder required
+                  [(ngModel)]="content"
+                  type="url"
+                  autocorrect="off"
+                  autocapitalize="none"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions style="display: flex" align="right">
+      <button mat-icon-button type="button" (click)="deleteFile()" *ngIf="!isNew">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <span style="flex: 1;"></span>
+      <button mat-raised-button type="submit" [disabled]="!form.valid || form.pristine">
+        <ng-container *ngIf="isNew" i18n="@@file-form:add">Add</ng-container>
+        <ng-container *ngIf="!isNew" i18n="@@file-form:edit">Edit</ng-container>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
