@@ -1,13 +1,15 @@
-import { getGreeting } from '../support/app.po';
+import { getGreeting, getLogoutButton } from "../support/app.po";
 
 describe('qmailo', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
+  it('should display login screen', () => {
     // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+    cy.login('password');
+    getLogoutButton().click();
+
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to qmailo!');
+    getGreeting().contains('Search field');
   });
 });

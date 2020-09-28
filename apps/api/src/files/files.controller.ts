@@ -18,7 +18,7 @@ import { ApiImplicitQuery } from '@nestjs/swagger/dist/decorators/api-implicit-q
 export class FileDto {
   @ApiProperty()
   @Matches(/^[a-z0-9_\-]+$/)
-  name!: string;
+  id!: string;
 
   @ApiProperty()
   @IsString()

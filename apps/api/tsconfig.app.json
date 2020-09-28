@@ -10,7 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "sourceMap": true,
-    "incremental": true,
     "target": "es2020"
   },
   "exclude": ["**/*.spec.ts"],

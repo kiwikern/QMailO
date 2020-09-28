@@ -3,6 +3,7 @@ import { FileDto } from './files.controller';
 import { promises as fs } from 'fs';
 import { ConfigService } from '@nestjs/config';
 import { LoggerService } from '../logger/logger.service';
+import {resolve} from 'path'
 
 @Injectable()
 export class FilesService {
@@ -11,10 +12,11 @@ export class FilesService {
     private configService: ConfigService,
   ) {}
 
-  async getFiles(fileNameSearch: string | undefined) {
+  async getFiles(fileNameSearch?: string) {
+    const path = this.configService.get<string>('QMAILO_PATH')!
     try {
       const fileNames = (
-        await fs.readdir(this.configService.get<string>('PATH')!)
+        await fs.readdir(path)
       )
         .filter((filename) => filename.startsWith('.qmail-'))
         .filter(
@@ -24,7 +26,7 @@ export class FilesService {
       return Promise.all(
         fileNames.map(async (name) => {
           const content =
-            (await fs.readFile(`${this.configService.get('PATH')}/${name}`)) +
+            (await fs.readFile(`${this.configService.get('QMAILO_PATH')}/${name}`)) +
             '';
           return { id: name.substring(7), content };
         }),
@@ -33,16 +35,19 @@ export class FilesService {
       this.logger.error(error);
       throw {
         key: 'internal_error',
-        message: `Could not find file names for: ${fileNameSearch}`,
+        message: "Could not find file names",
       };
     }
   }
 
   async createFile(fileDto: FileDto) {
+    return this.updateFile(fileDto)
+  }
+
+  async updateFile(fileDto: FileDto) {
     try {
-      // TODO: Disallow creation of existing file
       await fs.writeFile(
-        `${this.configService.get('PATH')}/.qmail-${fileDto.name}`,
+        `${this.configService.get('QMAILO_PATH')}/.qmail-${fileDto.id}`,
         fileDto.content,
       );
     } catch (err) {
@@ -58,14 +63,12 @@ export class FilesService {
     }
   }
 
-  updateFile(fileDto: FileDto) {
-    // TODO: implement
-  }
-
   async deleteFile(fileName: string) {
+    const filePath = resolve(this.configService.get('QMAILO_PATH')!,`.qmail-${fileName}`);
     try {
-      await fs.unlink(`${this.configService.get('PATH')}/.qmail-${fileName}`);
+      await fs.unlink(filePath);
     } catch (err) {
+      console.log(err)
       this.logger.error(
         'Could not delete file with name',
         err.stackTrace,

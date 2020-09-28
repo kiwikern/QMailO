@@ -12,6 +12,7 @@ import * as Joi from 'joi';
     LoggerModule,
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: 'apps/api/.env',
       validationSchema: Joi.object({
         LOG_LEVELS: Joi.array()
           .has(Joi.string().valid('error', 'warn', 'info', 'debug', 'verbose'))
@@ -22,7 +23,7 @@ import * as Joi from 'joi';
           .valid('development', 'production', 'test')
           .default('development'),
         PASSWORD_HASH: Joi.string().required(),
-        PATH: Joi.string().required(),
+        QMAILO_PATH: Joi.string().required(),
         PORT: Joi.number().default(30000),
       }),
     }),

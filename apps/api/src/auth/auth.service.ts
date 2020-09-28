@@ -20,6 +20,6 @@ export class AuthService {
       throw new UnauthorizedException('Wrong password');
     }
 
-    return this.jwtService.sign({});
+    return {jwt: this.jwtService.sign({})};
   }
 }
