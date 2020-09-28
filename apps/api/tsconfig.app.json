@@ -3,8 +3,15 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node"],
+    "declaration": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "sourceMap": true,
+    "incremental": true,
+    "target": "es2020"
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
