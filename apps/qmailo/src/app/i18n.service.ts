@@ -4,7 +4,6 @@ import { translationsDE } from '../i18n/i18n-de';
 
 @Injectable()
 export class I18nService {
-
   translations;
 
   constructor(@Inject(LOCALE_ID) private locale: string) {
@@ -19,9 +18,10 @@ export class I18nService {
     if (this.translations[key]) {
       return this.translations[key];
     } else {
-      console.warn(`No translation found for key ${key} and locale ${this.locale}.`);
+      console.warn(
+        `No translation found for key ${key} and locale ${this.locale}.`,
+      );
       return key;
     }
   }
-
 }

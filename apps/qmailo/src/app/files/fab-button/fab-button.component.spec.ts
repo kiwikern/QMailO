@@ -11,14 +11,9 @@ describe('FabButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FabButtonComponent ],
-      imports: [
-        MatIconModule,
-        MatButtonModule,
-        BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
+      declarations: [FabButtonComponent],
+      imports: [MatIconModule, MatButtonModule, BrowserAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -9,29 +9,29 @@ import { Router } from '@angular/router';
 import { InfoSnackBarService } from '../info-snack-bar.service';
 import { QmailFileActionTypes } from '../files/qmail-file.actions';
 
-
 @Injectable()
 export class AuthEffects {
-
-  constructor(private actions$: Actions,
-              private http: HttpClient,
-              private router: Router,
-              private snackBar: InfoSnackBarService) {
-  }
+  constructor(
+    private actions$: Actions,
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: InfoSnackBarService,
+  ) {}
 
   @Effect() login$: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_REQUEST),
-    mergeMap(action =>
+    mergeMap((action) =>
       this.http.post<{ jwt: string }>('/api/login', (<any>action).payload).pipe(
-        mergeMap(data => this.login(data)),
-        catchError(err => this.handleError(err))
-      ))
+        mergeMap((data) => this.login(data)),
+        catchError((err) => this.handleError(err)),
+      ),
+    ),
   );
 
   @Effect() logout$: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGOUT),
     tap(() => this.router.navigate(['/login'])),
-    map(() => ({type: 'LOGOUT_SUCCESS'}))
+    map(() => ({ type: 'LOGOUT_SUCCESS' })),
   );
 
   private handleError(error) {
@@ -48,15 +48,14 @@ export class AuthEffects {
       this.snackBar.open('SnackBar.Message.Error.ClientError');
       console.log(error);
     }
-    return of({type: AuthActionTypes.LOGIN_FAIL});
+    return of({ type: AuthActionTypes.LOGIN_FAIL });
   }
 
   private login(data: { jwt: string }) {
     this.router.navigate(['/files']);
     return [
-      {type: AuthActionTypes.LOGIN_SUCESS, payload: data},
-      {type: QmailFileActionTypes.LoadQmailFilesRequest}
+      { type: AuthActionTypes.LOGIN_SUCESS, payload: data },
+      { type: QmailFileActionTypes.LoadQmailFilesRequest },
     ];
   }
-
 }

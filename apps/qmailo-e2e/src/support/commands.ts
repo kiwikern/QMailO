@@ -13,8 +13,12 @@ import {
   getContentInput,
   getLoginButton,
   getNameInput,
-  getPassword, getAddFileButton, getFileRow, getDeleteFileButton, getConfirmDeletionButton
-} from "./app.po";
+  getPassword,
+  getAddFileButton,
+  getFileRow,
+  getDeleteFileButton,
+  getConfirmDeletionButton,
+} from './app.po';
 
 //
 // -- This is a parent command --
@@ -24,17 +28,17 @@ Cypress.Commands.add('login', (password) => {
 });
 
 Cypress.Commands.add('addFile', (fileName, content) => {
-  getOpenFileDialogButton().click()
-  getNameInput().type(fileName)
-  getContentInput().type(content)
-  getAddFileButton().click()
-})
+  getOpenFileDialogButton().click();
+  getNameInput().type(fileName);
+  getContentInput().type(content);
+  getAddFileButton().click();
+});
 
 Cypress.Commands.add('deleteFile', (fileName, content) => {
-  getFileRow(fileName, content).click()
-  getDeleteFileButton().click()
-  getConfirmDeletionButton().click()
-})
+  getFileRow(fileName, content).click();
+  getDeleteFileButton().click();
+  getConfirmDeletionButton().click();
+});
 
 //
 // -- This is a child command --

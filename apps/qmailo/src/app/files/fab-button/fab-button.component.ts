@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -8,16 +14,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
   animations: [
     trigger('flyInOut', [
       transition(':enter', [
-        style({transform: 'translateY(100%)'}),
-        animate('300ms ease-out', style({transform: 'translateY(0)'}))
+        style({ transform: 'translateY(100%)' }),
+        animate('300ms ease-out', style({ transform: 'translateY(0)' })),
       ]),
       transition(':leave', [
-        style({transform: 'translateY(0)'}),
-        animate('300ms ease-in', style({transform: 'translateY(100%)'}))
-      ])
-    ])
+        style({ transform: 'translateY(0)' }),
+        animate('300ms ease-in', style({ transform: 'translateY(100%)' })),
+      ]),
+    ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabButtonComponent implements OnInit {
   @HostBinding('class.fab') fabClass = true;
@@ -26,10 +32,7 @@ export class FabButtonComponent implements OnInit {
   @Input() showButton = true;
   @Input() type = 'button';
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

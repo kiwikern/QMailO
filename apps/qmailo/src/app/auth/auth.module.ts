@@ -26,11 +26,7 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
   ],
   declarations: [LoginComponent],
-  providers: [
-    LoginGuard
-  ],
-  exports: [
-    LoginComponent
-  ]
+  providers: [LoginGuard],
+  exports: [LoginComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from './reducers';
@@ -26,22 +25,25 @@ import { ShareService } from './share.service';
 import { I18nService } from './i18n.service';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: 'files', pathMatch: 'full'},
-  {path: 'files', loadChildren: () => import('./files/files.module').then(m => m.FilesModule), canActivateChild: [LoginGuard], canLoad: [LoginGuard]},
-  {path: 'about', component: AboutComponent}
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'files', pathMatch: 'full' },
+  {
+    path: 'files',
+    loadChildren: () =>
+      import('./files/files.module').then((m) => m.FilesModule),
+    canActivateChild: [LoginGuard],
+    canLoad: [LoginGuard],
+  },
+  { path: 'about', component: AboutComponent },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AboutComponent
-  ],
+  declarations: [AppComponent, AboutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     RouterModule.forRoot(routes),
@@ -50,15 +52,16 @@ const routes: Routes = [
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     InfoSnackBarService,
     ShareService,
-    I18nService
+    I18nService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

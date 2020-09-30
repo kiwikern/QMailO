@@ -7,21 +7,16 @@ import { LoginRequest } from '../auth.actions';
   selector: 'app-login-component',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
-
   password: string;
 
-  constructor(private store: Store<RootState>) {
-  }
+  constructor(private store: Store<RootState>) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   submit() {
-    this.store.dispatch(new LoginRequest({password: this.password}));
+    this.store.dispatch(new LoginRequest({ password: this.password }));
   }
-
 }

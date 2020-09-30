@@ -1,14 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { QmailFile } from '../qmail-file.model';
 
 @Component({
   selector: 'app-file-form',
   templateUrl: './file-form.component.html',
   styleUrls: ['./file-form.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileFormComponent implements OnInit {
-
   @Input() title: string;
   @Input() id = '';
   @Input() content = '';
@@ -17,17 +23,15 @@ export class FileFormComponent implements OnInit {
   @Output() save = new EventEmitter<QmailFile>();
   @Output() delete = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   saveFile() {
-    this.save.emit({id: this.id, content: this.content});
+    this.save.emit({ id: this.id, content: this.content });
   }
 
   deleteFile() {
     this.delete.emit(this.id);
   }
-
 }

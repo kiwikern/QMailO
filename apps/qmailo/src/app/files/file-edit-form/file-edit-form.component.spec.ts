@@ -8,9 +8,8 @@ describe('FileEditFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileEditFormComponent ]
-    })
-    .compileComponents();
+      declarations: [FileEditFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

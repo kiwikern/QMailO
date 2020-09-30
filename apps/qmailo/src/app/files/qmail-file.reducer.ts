@@ -16,7 +16,9 @@ export interface FileState extends EntityState<QmailFile> {
   filterField: FilterField;
 }
 
-export const adapter: EntityAdapter<QmailFile> = createEntityAdapter<QmailFile>();
+export const adapter: EntityAdapter<QmailFile> = createEntityAdapter<
+  QmailFile
+>();
 
 export const initialState: FileState = adapter.getInitialState({
   // additional entity state properties
@@ -28,22 +30,20 @@ export const initialState: FileState = adapter.getInitialState({
   filterField: 'id' as FilterField,
 });
 
-export function reducer(state = initialState,
-                        action: Action | any): FileState {
+export function reducer(state = initialState, action: Action | any): FileState {
   switch (action.type) {
-
     case QmailFileActionTypes.AddQmailFileRequest:
     case QmailFileActionTypes.UpdateQmailFileRequest:
     case QmailFileActionTypes.DeleteQmailFileRequest:
-      return Object.assign({}, state, {isSaving: true});
+      return Object.assign({}, state, { isSaving: true });
 
     case QmailFileActionTypes.AddQmailFileFailed:
     case QmailFileActionTypes.UpdateQmailFileFailed:
     case QmailFileActionTypes.DeleteQmailFileFailed:
-      return Object.assign({}, state, {isSaving: false});
+      return Object.assign({}, state, { isSaving: false });
 
     case QmailFileActionTypes.AddQmailFile: {
-      state = Object.assign({}, state, {isSaving: false});
+      state = Object.assign({}, state, { isSaving: false });
       return adapter.addOne((<any>action).payload.qmailFile, state);
     }
 
@@ -60,7 +60,7 @@ export function reducer(state = initialState,
     }
 
     case QmailFileActionTypes.UpdateQmailFile: {
-      state = Object.assign({}, state, {isSaving: false});
+      state = Object.assign({}, state, { isSaving: false });
       return adapter.updateOne((<any>action).payload.qmailFile, state);
     }
 
@@ -69,7 +69,7 @@ export function reducer(state = initialState,
     }
 
     case QmailFileActionTypes.DeleteQmailFile: {
-      state = Object.assign({}, state, {isSaving: false});
+      state = Object.assign({}, state, { isSaving: false });
       return adapter.removeOne((<any>action).payload.id, state);
     }
 
@@ -78,15 +78,15 @@ export function reducer(state = initialState,
     }
 
     case QmailFileActionTypes.LoadQmailFiles: {
-      state = Object.assign({}, state, {isLoading: false});
+      state = Object.assign({}, state, { isLoading: false });
       return adapter.addAll((<any>action).payload.qmailFiles, state);
     }
 
     case QmailFileActionTypes.LoadQmailFilesRequest:
-      return Object.assign({}, state, {isLoading: true});
+      return Object.assign({}, state, { isLoading: true });
 
     case QmailFileActionTypes.LoadQmailFilesFailed:
-      return Object.assign({}, state, {isLoading: false});
+      return Object.assign({}, state, { isLoading: false });
 
     case QmailFileActionTypes.ClearQmailFiles: {
       return adapter.removeAll(state);
@@ -95,14 +95,14 @@ export function reducer(state = initialState,
     case QmailFileActionTypes.ChangeSortSettings: {
       return Object.assign({}, state, {
         sortAttribute: action.payload.sortAttribute,
-        sortOrder: action.payload.sortOrder
+        sortOrder: action.payload.sortOrder,
       });
     }
 
     case QmailFileActionTypes.ChangeFilterSettings: {
       return Object.assign({}, state, {
         filterValue: action.payload.filterValue,
-        filterField: action.payload.filterField
+        filterField: action.payload.filterField,
       });
     }
 
@@ -122,16 +122,26 @@ const {
 export const selectQMailFiles = createFeatureSelector<FileState>('files');
 export const selectAllFiles = createSelector(selectQMailFiles, selectAll);
 
-export const selectIsLoading = createSelector(selectQMailFiles, state => state.isLoading);
-export const selectIsSaving = createSelector(selectQMailFiles, state => state.isSaving);
+export const selectIsLoading = createSelector(
+  selectQMailFiles,
+  (state) => state.isLoading,
+);
+export const selectIsSaving = createSelector(
+  selectQMailFiles,
+  (state) => state.isSaving,
+);
 
-export const selectById = id => createSelector(selectAllFiles, files => files.find(f => f.id === id));
+export const selectById = (id) =>
+  createSelector(selectAllFiles, (files) => files.find((f) => f.id === id));
 
-export const selectSortSettings = createSelector(selectQMailFiles, state => ({
+export const selectSortSettings = createSelector(selectQMailFiles, (state) => ({
   sortAttribute: state.sortAttribute,
-  sortOrder: state.sortOrder
+  sortOrder: state.sortOrder,
 }));
-export const selectFilterSettings = createSelector(selectQMailFiles, state => ({
-  filterValue: state.filterValue,
-  filterField: state.filterField
-}));
+export const selectFilterSettings = createSelector(
+  selectQMailFiles,
+  (state) => ({
+    filterValue: state.filterValue,
+    filterField: state.filterField,
+  }),
+);

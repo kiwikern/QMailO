@@ -29,10 +29,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { settingsReducer } from './store/settings.reducer';
 
 const fileRoutes: Routes = [
-  {path: '', component: FilesListComponent},
-  {path: 'edit/:id', component: FileEditFormComponent},
-  {path: 'new', component: FileAddFormComponent},
-  {path: 'settings', component: SettingsComponent}
+  { path: '', component: FilesListComponent },
+  { path: 'edit/:id', component: FileEditFormComponent },
+  { path: 'new', component: FileAddFormComponent },
+  { path: 'settings', component: SettingsComponent },
 ];
 
 @NgModule({
@@ -54,7 +54,7 @@ const fileRoutes: Routes = [
     MatProgressBarModule,
     MatProgressSpinnerModule,
     ScrollingModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     FilesListComponent,
@@ -62,8 +62,8 @@ const fileRoutes: Routes = [
     FabButtonComponent,
     FileFormComponent,
     FileAddFormComponent,
-    SettingsComponent
-  ]
+    SettingsComponent,
+  ],
 })
 export class FilesModule {
   constructor(store: Store<RootState>) {

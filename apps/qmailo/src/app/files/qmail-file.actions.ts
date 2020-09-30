@@ -23,98 +23,85 @@ export enum QmailFileActionTypes {
   DeleteQmailFileRequest = '[QmailFile] Request Deleting QmailFile',
   DeleteQmailFileFailed = '[QmailFile] Deleting QmailFile Failed',
   DeleteQmailFiles = '[QmailFile] Delete QmailFiles',
-  ClearQmailFiles = '[QmailFile] Clear QmailFiles'
+  ClearQmailFiles = '[QmailFile] Clear QmailFiles',
 }
 
 export class LoadQmailFiles implements Action {
   readonly type = QmailFileActionTypes.LoadQmailFiles;
 
-  constructor(public payload: { qmailFiles: QmailFile[] }) {
-  }
+  constructor(public payload: { qmailFiles: QmailFile[] }) {}
 }
 
 export class LoadQmailFilesRequest implements Action {
   readonly type = QmailFileActionTypes.LoadQmailFilesRequest;
 
-  constructor() {
-  }
+  constructor() {}
 }
 
 export class AddQmailFileRequest implements Action {
   readonly type = QmailFileActionTypes.AddQmailFileRequest;
 
-  constructor(public payload: { qmailFile: QmailFile }) {
-  }
+  constructor(public payload: { qmailFile: QmailFile }) {}
 }
 
 export class AddQmailFile implements Action {
   readonly type = QmailFileActionTypes.AddQmailFile;
 
-  constructor(public payload: { qmailFile: QmailFile }) {
-  }
+  constructor(public payload: { qmailFile: QmailFile }) {}
 }
 
 export class UpsertQmailFile implements Action {
   readonly type = QmailFileActionTypes.UpsertQmailFile;
 
-  constructor(public payload: { qmailFile: QmailFile }) {
-  }
+  constructor(public payload: { qmailFile: QmailFile }) {}
 }
 
 export class AddQmailFiles implements Action {
   readonly type = QmailFileActionTypes.AddQmailFiles;
 
-  constructor(public payload: { qmailFiles: QmailFile[] }) {
-  }
+  constructor(public payload: { qmailFiles: QmailFile[] }) {}
 }
 
 export class UpsertQmailFiles implements Action {
   readonly type = QmailFileActionTypes.UpsertQmailFiles;
 
-  constructor(public payload: { qmailFiles: QmailFile[] }) {
-  }
+  constructor(public payload: { qmailFiles: QmailFile[] }) {}
 }
 
 export class UpdateQmailFile implements Action {
   readonly type = QmailFileActionTypes.UpdateQmailFile;
 
-  constructor(public payload: { qmailFile: Update<QmailFile> }) {
-  }
+  constructor(public payload: { qmailFile: Update<QmailFile> }) {}
 }
 
 export class UpdateQmailFileRequest implements Action {
   readonly type = QmailFileActionTypes.UpdateQmailFileRequest;
 
-  constructor(public payload: { qmailFile: QmailFile }) {
-  }
+  constructor(public payload: { qmailFile: QmailFile }) {}
 }
 
 export class UpdateQmailFiles implements Action {
   readonly type = QmailFileActionTypes.UpdateQmailFiles;
 
-  constructor(public payload: { qmailFiles: Update<QmailFile>[] }) {
-  }
+  constructor(public payload: { qmailFiles: Update<QmailFile>[] }) {}
 }
 
 export class DeleteQmailFileRequest implements Action {
   readonly type = QmailFileActionTypes.DeleteQmailFileRequest;
 
-  constructor(public payload: { id: string }) {
-  }
+  constructor(public payload: { id: string }) {}
 }
 
 export class DeleteQmailFile implements Action {
   readonly type = QmailFileActionTypes.DeleteQmailFile;
 
-  constructor(public payload: { id: string }) {
-  }
+  constructor(public payload: { id: string }) {}
 }
 
 export class DeleteQmailFiles implements Action {
   readonly type = QmailFileActionTypes.DeleteQmailFiles;
 
-  constructor(public payload: { ids: string[] }) {
-  }
+  constructor(public payload: { ids: string[] }) {}
 }
 
 export class ClearQmailFiles implements Action {
@@ -124,19 +111,21 @@ export class ClearQmailFiles implements Action {
 export class ChangeSortSettings implements Action {
   readonly type = QmailFileActionTypes.ChangeSortSettings;
 
-  constructor(public payload: { sortAttribute: string, sortOrder: SortOrder}) {
-  }
+  constructor(
+    public payload: { sortAttribute: string; sortOrder: SortOrder },
+  ) {}
 }
 
 export class ChangeFilterSettings implements Action {
   readonly type = QmailFileActionTypes.ChangeFilterSettings;
 
-  constructor(public payload: { filterValue: string, filterField: FilterField}) {
-  }
+  constructor(
+    public payload: { filterValue: string; filterField: FilterField },
+  ) {}
 }
 
 export type QmailFileActions =
-  LoadQmailFiles
+  | LoadQmailFiles
   | LoadQmailFilesRequest
   | AddQmailFile
   | UpsertQmailFile

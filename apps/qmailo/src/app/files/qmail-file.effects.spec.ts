@@ -10,10 +10,7 @@ describe('QmailFileService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        QmailFileEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [QmailFileEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.get(QmailFileEffects);

@@ -13,23 +13,29 @@ import { Observable } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   showBackNavigation = false;
 
   jwt$: Observable<string>;
 
-  constructor(private store: Store<RootState>,
-              private snackBar: InfoSnackBarService,
-              private router: Router) {
-  }
+  constructor(
+    private store: Store<RootState>,
+    private snackBar: InfoSnackBarService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.jwt$ = this.store.select(selectJwt);
-    this.router.events.pipe(
-      filter(e => e instanceof NavigationEnd),
-    ).subscribe((event: NavigationEnd) => this.showBackNavigation = /.*(about|new|edit|settings).*/.test(event.url));
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(
+        (event: NavigationEnd) =>
+          (this.showBackNavigation = /.*(about|new|edit|settings).*/.test(
+            event.url,
+          )),
+      );
   }
 
   logout() {
@@ -40,5 +46,4 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new LoadQmailFilesRequest());
     this.snackBar.open('SnackBar.Message.Info.ReloadingFiles');
   }
-
 }

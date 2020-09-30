@@ -3,19 +3,17 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class ShareService {
-
   navigator: any = navigator;
 
-  constructor(@Inject(DOCUMENT) private document) {
-  }
+  constructor(@Inject(DOCUMENT) private document) {}
 
   isWebShareApiAvailable(): boolean {
-    return  this.navigator && this.navigator.share;
+    return this.navigator && this.navigator.share;
   }
 
   shareViaWebApi(title, text, url): boolean {
     if (this.isWebShareApiAvailable()) {
-      this.navigator.share({title, text, url});
+      this.navigator.share({ title, text, url });
       return true;
     } else {
       return false;
@@ -43,5 +41,4 @@ export class ShareService {
     }
     return wasSuccessful;
   }
-
 }

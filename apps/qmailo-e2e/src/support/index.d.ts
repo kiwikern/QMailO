@@ -6,8 +6,8 @@ declare namespace Cypress {
      * Custom command to select DOM element by data-cy attribute.
      * @example cy.dataCy('greeting')
      */
-    login(password: string): Chainable<Element>
-    addFile(fileName: string, content: string): Chainable<Element>
-    deleteFile(fileName: string, content: string): Chainable<Element>
+    login(password: string): Chainable<Element>;
+    addFile(fileName: string, content: string): Chainable<Element>;
+    deleteFile(fileName: string, content: string): Chainable<Element>;
   }
 }

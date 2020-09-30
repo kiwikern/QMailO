@@ -9,23 +9,30 @@ import { Router } from '@angular/router';
 import { InfoSnackBarService } from '../info-snack-bar.service';
 import { AuthActionTypes } from '../auth/auth.actions';
 
-
 @Injectable()
 export class QmailFileEffects {
-
-  constructor(private actions$: Actions,
-              private http: HttpClient,
-              private snackBar: InfoSnackBarService,
-              private router: Router) {
-  }
+  constructor(
+    private actions$: Actions,
+    private http: HttpClient,
+    private snackBar: InfoSnackBarService,
+    private router: Router,
+  ) {}
 
   @Effect() load$: Observable<Action> = this.actions$.pipe(
     ofType(QmailFileActionTypes.LoadQmailFilesRequest),
-    mergeMap(action =>
+    mergeMap((action) =>
       this.http.get('/api/files').pipe(
-        map(data => ({type: QmailFileActionTypes.LoadQmailFiles, payload: {qmailFiles: data}})),
-        catchError(err => this.handleError(err, {type: QmailFileActionTypes.LoadQmailFilesFailed}))
-      ))
+        map((data) => ({
+          type: QmailFileActionTypes.LoadQmailFiles,
+          payload: { qmailFiles: data },
+        })),
+        catchError((err) =>
+          this.handleError(err, {
+            type: QmailFileActionTypes.LoadQmailFilesFailed,
+          }),
+        ),
+      ),
+    ),
   );
 
   @Effect() add$: Observable<Action> = this.actions$.pipe(
@@ -33,11 +40,13 @@ export class QmailFileEffects {
     mergeMap((action: any) => {
       return this.http.put('/api/files', action.payload.qmailFile).pipe(
         map(() => this.addSuccess(action.payload.qmailFile)),
-        catchError(err => this.handleError(err, {type: QmailFileActionTypes.AddQmailFileFailed}))
+        catchError((err) =>
+          this.handleError(err, {
+            type: QmailFileActionTypes.AddQmailFileFailed,
+          }),
+        ),
       );
-
-
-    })
+    }),
   );
 
   @Effect() update$: Observable<Action> = this.actions$.pipe(
@@ -45,8 +54,13 @@ export class QmailFileEffects {
     mergeMap((action: any) =>
       this.http.post('/api/files', action.payload.qmailFile).pipe(
         map(() => this.updateSuccess(action.payload.qmailFile)),
-        catchError(err => this.handleError(err, {type: QmailFileActionTypes.UpdateQmailFileFailed}))
-      ))
+        catchError((err) =>
+          this.handleError(err, {
+            type: QmailFileActionTypes.UpdateQmailFileFailed,
+          }),
+        ),
+      ),
+    ),
   );
 
   @Effect() delete$: Observable<Action> = this.actions$.pipe(
@@ -54,8 +68,13 @@ export class QmailFileEffects {
     mergeMap((action: any) =>
       this.http.delete(`/api/files/${action.payload.id}`).pipe(
         map(() => this.deleteSuccess(action.payload.id)),
-        catchError(err => this.handleError(err, {type: QmailFileActionTypes.DeleteQmailFileFailed}))
-      ))
+        catchError((err) =>
+          this.handleError(err, {
+            type: QmailFileActionTypes.DeleteQmailFileFailed,
+          }),
+        ),
+      ),
+    ),
   );
 
   private handleError(error: HttpErrorResponse, action): Observable<any> {
@@ -66,11 +85,11 @@ export class QmailFileEffects {
         break;
       case 401:
         this.snackBar.open('SnackBar.Message.Error.LoginNeeded');
-        actions.push({type: AuthActionTypes.LOGOUT});
+        actions.push({ type: AuthActionTypes.LOGOUT });
         break;
       case 404:
         this.snackBar.open('SnackBar.Message.Error.NoFileFoundForEdit');
-        actions.push({type: QmailFileActionTypes.LoadQmailFilesRequest});
+        actions.push({ type: QmailFileActionTypes.LoadQmailFilesRequest });
         break;
       case 409:
         this.snackBar.open('SnackBar.Message.Error.FileAlreadyExists');
@@ -88,25 +107,31 @@ export class QmailFileEffects {
         console.log(error);
         this.snackBar.open('SnackBar.Message.Error.ClientError');
     }
-    return of(actions).pipe(switchMap(a => a));
+    return of(actions).pipe(switchMap((a) => a));
   }
 
   private addSuccess(qmailFile) {
     this.snackBar.open('SnackBar.Message.Error.FileAdded');
     this.router.navigate(['/files']);
-    return {type: QmailFileActionTypes.AddQmailFile, payload: {qmailFile}};
+    return { type: QmailFileActionTypes.AddQmailFile, payload: { qmailFile } };
   }
 
   private deleteSuccess(id) {
     this.snackBar.open('SnackBar.Message.Error.FileDeleted');
     this.router.navigate(['/files']);
-    return {type: QmailFileActionTypes.DeleteQmailFile, payload: {id}};
+    return { type: QmailFileActionTypes.DeleteQmailFile, payload: { id } };
   }
 
   private updateSuccess(qmailFile) {
     this.snackBar.open('SnackBar.Message.Error.FileEdited');
-    const change = {id: qmailFile.id, changes: {content: qmailFile.content}};
+    const change = {
+      id: qmailFile.id,
+      changes: { content: qmailFile.content },
+    };
     this.router.navigate(['/files']);
-    return {type: QmailFileActionTypes.UpdateQmailFile, payload: {qmailFile: change}};
+    return {
+      type: QmailFileActionTypes.UpdateQmailFile,
+      payload: { qmailFile: change },
+    };
   }
 }
