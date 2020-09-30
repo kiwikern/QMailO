@@ -8,19 +8,34 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 // eslint-disable-next-line @typescript-eslint/no-namespace
-import { getLoginButton, getLogoutButton, getPassword } from "./app.po";
+import {
+  getOpenFileDialogButton,
+  getContentInput,
+  getLoginButton,
+  getNameInput,
+  getPassword, getAddFileButton, getFileRow, getDeleteFileButton, getConfirmDeletionButton
+} from "./app.po";
 
-declare namespace Cypress {
-  interface Chainable<Subject> {
-    login(password: string): void;
-  }
-}
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (password) => {
   getPassword().type(password);
   getLoginButton().click();
 });
+
+Cypress.Commands.add('addFile', (fileName, content) => {
+  getOpenFileDialogButton().click()
+  getNameInput().type(fileName)
+  getContentInput().type(content)
+  getAddFileButton().click()
+})
+
+Cypress.Commands.add('deleteFile', (fileName, content) => {
+  getFileRow(fileName, content).click()
+  getDeleteFileButton().click()
+  getConfirmDeletionButton().click()
+})
+
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })

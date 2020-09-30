@@ -1,15 +1,22 @@
-import { getGreeting, getLogoutButton } from "../support/app.po";
+/// <reference path="../support/index.d.ts" />
+
+import { getActiveSnackbar, getFileList, getLogoutButton } from "../support/app.po";
 
 describe('qmailo', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display login screen', () => {
-    // Custom command example, see `../support/commands.ts` file
+  it('should login and logout', () => {
     cy.login('password');
+
+    getFileList().contains('Search field');
+
     getLogoutButton().click();
+  });
 
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Search field');
+  it('should create a file and delete it', () => {
+    cy.login('password');
+    cy.addFile('hello', 'mail@example.com')
+    cy.deleteFile('hello', 'mail@example.com')
+    getActiveSnackbar().contains('File was successfully deleted')
   });
 });
