@@ -18,7 +18,7 @@ autorestart=yes`,
   await exec(`supervisorctl reread`);
   await exec(`supervisorctl update`);
   await exec(
-    `uberspace web backend set qmailo.${domain}/api --remove-prefix --http --port ${port}`,
+    `uberspace web backend set ${domain}/api --remove-prefix --http --port ${port}`,
   );
   spinner.succeed('Backend daemon started');
   spinner.stop();
