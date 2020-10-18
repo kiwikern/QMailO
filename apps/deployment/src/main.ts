@@ -1,3 +1,10 @@
-import { configure } from './app/configure';
+import { deploy } from './app/deployment';
 
-configure();
+(async () => {
+  try {
+    await deploy();
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+})();
