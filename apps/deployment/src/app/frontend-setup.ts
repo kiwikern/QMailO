@@ -20,11 +20,20 @@ export async function setupFrontend(domain: string) {
 async function moveFrontendBundle(domain) {
   const bundlePath = `/home/${process.env.USER}/qmailo/dist/apps/qmailo/`;
   const targetPath = `/var/www/virtual/${process.env.USER}/${domain}`;
-  if (!fs.access(bundlePath)) {
+  try {
+    await fs.access(bundlePath);
+  } catch (e) {
     throw new Error(`Frontend was not bundled under ${bundlePath}.`);
   }
-  if (fs.access(targetPath)) {
-    throw new Error(`Frontend already exists. Please remove ${bundlePath}.`);
+  try {
+    await fs.access(targetPath);
+    // noinspection ExceptionCaughtLocallyJS
+    throw { fileExists: true };
+  } catch (e) {
+    if (e?.fileExists) {
+      throw new Error(`Frontend already exists. Please remove ${targetPath}.`);
+    }
+    // Otherwise the folder does not exist -> fine
   }
   await exec(`mv ${bundlePath} ${targetPath}`);
 }
