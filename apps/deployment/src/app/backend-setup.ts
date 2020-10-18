@@ -9,7 +9,7 @@ export async function setupBackend(domain, port) {
 
   spinner.start('Setting up backend as daemon');
   await fs.writeFile(
-    `/home/${process.env.USER}/etc/service.d/qmailo.ini`,
+    `/home/${process.env.USER}/etc/services.d/qmailo.ini`,
     `[program:qmailo]
 command=node /home/${process.env.USER}/qmailo/dist/apps/api/main.js 2>&1
 autostart=yes
