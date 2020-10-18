@@ -92,7 +92,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.8",
     "@types/inquirer": "^7.3.1",
-    "@types/jest": "26.0.8",
+    "@types/jest": "26.0.14",
     "@types/joi": "^14.3.4",
     "@types/node": "~14.11.2",
     "@types/passport-jwt": "^3.0.3",
