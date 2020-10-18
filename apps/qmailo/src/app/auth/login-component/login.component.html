@@ -5,19 +5,29 @@
       Login with the password from your server setup.
     </mat-card-subtitle>
     <mat-card-content>
-      <mat-form-field style="width: 100%">
-        <input name="password"
-               matInput
-               autocomplete="password"
-               type="password"
-               placeholder="Password"
-               i18n-placeholder="@@login:password"
-               required
-               [(ngModel)]="password">
+      <mat-form-field style="width: 100%;">
+        <input
+          name="password"
+          matInput
+          autocomplete="password"
+          type="password"
+          placeholder="Password"
+          i18n-placeholder="@@login:password"
+          required
+          [(ngModel)]="password"
+        />
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions align="right">
-      <button mat-button mat-raised-button type="submit" [disabled]="!form.valid" i18n="@@login:login">Login</button>
+      <button
+        mat-button
+        mat-raised-button
+        type="submit"
+        [disabled]="!form.valid"
+        i18n="@@login:login"
+      >
+        Login
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@qmailo/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@qmailo/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@qmailo/deployment": ["libs/deployment/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

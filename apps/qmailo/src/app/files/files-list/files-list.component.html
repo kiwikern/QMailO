@@ -1,50 +1,80 @@
 <mat-card>
-  <div style="display: flex; flex-direction: row">
-
+  <div style="display: flex; flex-direction: row;">
     <mat-form-field class="filter small">
-      <mat-select placeholder="Search field" i18n-placeholder="@@files-list:search field" [(value)]="filterField"
-                  (selectionChange)="applyFilter()" class="form">
+      <mat-select
+        placeholder="Search field"
+        i18n-placeholder="@@files-list:search field"
+        [(value)]="filterField"
+        (selectionChange)="applyFilter()"
+        class="form"
+      >
         <mat-option value="id">Name</mat-option>
         <mat-option value="content">Content</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="filter stretch">
-      <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter()">
-      <span matSuffix (click)="filterValue = ''; applyFilter()" *ngIf="filterValue">
-            <button class="clear" mat-icon-button><mat-icon>cancel</mat-icon></button>
-          </span>
+      <input
+        matInput
+        placeholder="Filter"
+        [(ngModel)]="filterValue"
+        (keyup)="applyFilter()"
+      />
+      <span
+        matSuffix
+        (click)="filterValue = ''; applyFilter()"
+        *ngIf="filterValue"
+      >
+        <button class="clear" mat-icon-button>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </span>
     </mat-form-field>
   </div>
   <mat-card-content>
-    <mat-table [dataSource]="dataSource"
-               matSort
-               (matSortChange)="sortChange($event)"
-               matSortDisableClear="true"
-               [matSortActive]="(sortSettings$ | async).sortAttribute"
-               [matSortDirection]="(sortSettings$ | async).sortOrder">
+    <mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="sortChange($event)"
+      matSortDisableClear="true"
+      [matSortActive]="(sortSettings$ | async).sortAttribute"
+      [matSortDirection]="(sortSettings$ | async).sortOrder"
+    >
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-        <mat-cell *matCellDef="let file">{{file.id}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let file">{{ file.id }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="content">
-        <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@file-list:content">Content</mat-header-cell>
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          i18n="@@file-list:content"
+          >Content</mat-header-cell
+        >
         <mat-cell *matCellDef="let file">
-          <span class="preserve-spaces">{{file.content}}</span>
+          <span class="preserve-spaces">{{ file.content }}</span>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnsToDisplay"
-               [routerLink]="['/files/edit', row.id]"
-               class="scrollable"
-               cdkScrollable></mat-row>
+      <mat-row
+        *matRowDef="let row; columns: columnsToDisplay"
+        [routerLink]="['/files/edit', row.id]"
+        class="scrollable"
+        cdkScrollable
+      ></mat-row>
     </mat-table>
   </mat-card-content>
-  <mat-card-actions style="display: flex; justify-content: center">
+  <mat-card-actions style="display: flex; justify-content: center;">
     <mat-spinner
-      *ngIf="(isLoading$ | async) || (files$ | async)?.length >= 20 && !(shouldLoadAllData$ | async)"></mat-spinner>
+      *ngIf="
+        (isLoading$ | async) ||
+        ((files$ | async)?.length >= 20 && !(shouldLoadAllData$ | async))
+      "
+    ></mat-spinner>
   </mat-card-actions>
 </mat-card>
 

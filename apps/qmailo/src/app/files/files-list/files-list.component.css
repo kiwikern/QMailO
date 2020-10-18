@@ -28,7 +28,7 @@
 mat-header-row {
   /*https://github.com/angular/material2/issues/5885*/
   position: sticky;
-  top: -.5px;
+  top: -0.5px;
   background: white;
   z-index: 100;
 }

@@ -5,46 +5,49 @@ With it, you can view, add, edit and delete .qmail files.
 You can use the API to write your own scripts or frontend, or use the corresponding [Angular frontend](https://github.com/kiwikern/qmailo-frontend).
 
 ## Setup
- 
- * Clone the repository `git clone https://github.com/kiwikern/qmailo.git`
- * `cd qmailo`
- * Run `npm install`
- * Run `npm run setup` (Make sure you are in the root directory `qmailo`.)
- * Run `npm start` to start the server. 
- * If you're using it on Ubserspace, you can also [add it as an service](https://wiki.uberspace.de/system:daemontools).
 
+- Clone the repository `git clone https://github.com/kiwikern/qmailo.git`
+- `cd qmailo`
+- Run `npm install`
+- Run `npm run setup` (Make sure you are in the root directory `qmailo`.)
+- Run `npm start` to start the server.
+- If you're using it on Ubserspace, you can also [add it as an service](https://wiki.uberspace.de/system:daemontools).
 
 ## Endpoints
 
 ### /login
-* no authorization required
-* POST
-  * request body (json):
-    * password (required): The password you chose during the setup.
-  * returns JWT token for authorized access of `/files` endpoint
-  * example: `curl -X POST -H "Content-Type: application/json" -d '{"password": "test"}' localhost:30000/login`
-    
+
+- no authorization required
+- POST
+  - request body (json):
+    - password (required): The password you chose during the setup.
+  - returns JWT token for authorized access of `/files` endpoint
+  - example: `curl -X POST -H "Content-Type: application/json" -d '{"password": "test"}' localhost:30000/login`
+
 ### /files
-* authorized with JWT token obtained with the login method
-* GET
-  * query parameters:
-    * search (optional): filter by file name.
-  * returns a list of all .qmail files without the `.qmail-` prefix in the format `{id: string, content: string}`
-* PUT
-  * request body (json):
-    * id (required): file name without the `.qmail-` prefix
-    * content (required): content of the .qmail file
-  * creates a new .qmail file. Does not override existing ones.
-* POST
-  * request body (json):
-    * id (required): file name without the `.qmail-` prefix
-    * content (required): content of the .qmail file
-  * updates an existing .qmail file. Does not create new ones.
-    
+
+- authorized with JWT token obtained with the login method
+- GET
+  - query parameters:
+    - search (optional): filter by file name.
+  - returns a list of all .qmail files without the `.qmail-` prefix in the format `{id: string, content: string}`
+- PUT
+  - request body (json):
+    - id (required): file name without the `.qmail-` prefix
+    - content (required): content of the .qmail file
+  - creates a new .qmail file. Does not override existing ones.
+- POST
+  - request body (json):
+    - id (required): file name without the `.qmail-` prefix
+    - content (required): content of the .qmail file
+  - updates an existing .qmail file. Does not create new ones.
+
 ### /files/:id
-* DELETE
-  * url param `:id`: file name without the `.qmail-` prefix
-  * deletes the given file if found
+
+- DELETE
+  - url param `:id`: file name without the `.qmail-` prefix
+  - deletes the given file if found
+
 # Qmailo
 
 This project was generated using [Nx](https://nx.dev).
@@ -143,32 +146,34 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
-# QmailoFrontend
 
+# QmailoFrontend
 
 QMailO helps you organize your `.qmail` files. For it to work, you need to set up the [QMailO Server](https://github.com/kiwikern/QMailO) as well. This web app was designed with Uberspace in mind.
 The app is available in English and German.
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/2671139/36565035-8ad77908-181f-11e8-9ab7-b8d673e32aa0.gif">
 </p>
 
-
 ## Setup
-* Set up your [QMailO Server](https://github.com/kiwikern/QMailO).
-* Download the [latest release](https://github.com/kiwikern/QMailO-Frontend/releases/latest) and unzip the language version of your choice to the folder served by your web server.
-* Forward all requests to `api/*` to your QMailO server, e. g. `localhost:30000`, anything else to `index.html`.
-  * There is a `.htaccess` included with a sample configuration. If you don't want to use it, you can just delete it.
+
+- Set up your [QMailO Server](https://github.com/kiwikern/QMailO).
+- Download the [latest release](https://github.com/kiwikern/QMailO-Frontend/releases/latest) and unzip the language version of your choice to the folder served by your web server.
+- Forward all requests to `api/*` to your QMailO server, e. g. `localhost:30000`, anything else to `index.html`.
+  - There is a `.htaccess` included with a sample configuration. If you don't want to use it, you can just delete it.
 
 ### Uberspace
-* If you're using Uberspace, you can easily create a [subdomain](https://wiki.uberspace.de/domain:subdomain) for your QMailO Frontend.
-* Just create a folder with your subdomain name in `/var/www/virtual/$USER/` and unzip the language version of your choice of the [latest release](https://github.com/kiwikern/QMailO-Frontend/releases/latest) into it.
-  * Example: `mkdir /var/www/virtual/$USER/qmailo.kimkern.de`
-* [Include your new subdomain](https://wiki.uberspace.de/webserver:https#aenderungen_am_let_s_encrypt_zertifikat) in your LetsEncrypt certificate.
-* If your QMailO server is running under a different port than 30000, edit the included `.htaccess` file:
-  * `RewriteRule ^api/(.*) http://localhost:30000/$1 [P]`
+
+- If you're using Uberspace, you can easily create a [subdomain](https://wiki.uberspace.de/domain:subdomain) for your QMailO Frontend.
+- Just create a folder with your subdomain name in `/var/www/virtual/$USER/` and unzip the language version of your choice of the [latest release](https://github.com/kiwikern/QMailO-Frontend/releases/latest) into it.
+  - Example: `mkdir /var/www/virtual/$USER/qmailo.kimkern.de`
+- [Include your new subdomain](https://wiki.uberspace.de/webserver:https#aenderungen_am_let_s_encrypt_zertifikat) in your LetsEncrypt certificate.
+- If your QMailO server is running under a different port than 30000, edit the included `.htaccess` file:
+  - `RewriteRule ^api/(.*) http://localhost:30000/$1 [P]`
 
 ## Development
 
-* Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-* Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
-* For further information about the Angular CLI, run `npm run ng -- --help`.
+- Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- For further information about the Angular CLI, run `npm run ng -- --help`.

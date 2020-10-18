@@ -17,7 +17,12 @@
             "polyfills": "apps/qmailo/src/polyfills.ts",
             "tsConfig": "apps/qmailo/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/qmailo/src/favicon.ico", "apps/qmailo/src/assets","apps/qmailo/src/manifest.json", "apps/qmailo/src/.htaccess"],
+            "assets": [
+              "apps/qmailo/src/favicon.ico",
+              "apps/qmailo/src/assets",
+              "apps/qmailo/src/manifest.json",
+              "apps/qmailo/src/.htaccess"
+            ],
             "styles": ["apps/qmailo/src/styles.css"],
             "scripts": []
           },
@@ -192,6 +197,54 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api-interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "deployment": {
+      "root": "apps/deployment",
+      "sourceRoot": "apps/deployment/src",
+      "projectType": "application",
+      "prefix": "deployment",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/deployment",
+            "main": "apps/deployment/src/main.ts",
+            "tsConfig": "apps/deployment/tsconfig.app.json",
+            "assets": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "deployment:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/deployment/tsconfig.app.json",
+              "apps/deployment/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/deployment/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/deployment/jest.config.js",
             "passWithNoTests": true
           }
         }
