@@ -11,8 +11,10 @@ export async function setupFrontend(domain: string) {
   await moveFrontendBundle(domain);
 
   const { stdout, stderr } = await exec(`uberspace web domain add ${domain}`);
-  console.log(stdout);
-  console.error(stderr);
+  spinner.info(stdout);
+  if (stderr) {
+    console.error(stderr);
+  }
   spinner.succeed(`Frontend published under ${domain}`);
   spinner.stop();
 }
@@ -35,5 +37,5 @@ async function moveFrontendBundle(domain) {
     }
     // Otherwise the folder does not exist -> fine
   }
-  await exec(`mv ${bundlePath} ${targetPath}`);
+  await fs.rename(bundlePath, targetPath);
 }

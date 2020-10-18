@@ -1,5 +1,6 @@
 import { exec } from './exec-promise';
 import * as ora from 'ora';
+import { promises as fs } from 'fs';
 
 export async function setupBackend(domain, port) {
   const spinner = ora().start('Building backend');
@@ -7,8 +8,12 @@ export async function setupBackend(domain, port) {
   spinner.succeed('Backend built');
 
   spinner.start('Setting up backend as daemon');
-  await exec(
-    `echo -en "[program:qmailo]\\ncommand=node/home/${process.env.USER}/qmailo/dist/apps/api/main.js 2>&1\\nautostart=yes\\nautorestart=yes" >> /home/${process.env.USER}/etc/service.d/qmailo.ini`,
+  await fs.writeFile(
+    `/home/${process.env.USER}/etc/service.d/qmailo.ini`,
+    `[program:qmailo]
+command=node /home/${process.env.USER}/qmailo/dist/apps/api/main.js 2>&1
+autostart=yes
+autorestart=yes`,
   );
   await exec(`supervisorctl reread`);
   await exec(`supervisorctl update`);
