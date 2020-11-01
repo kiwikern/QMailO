@@ -116,7 +116,7 @@
     "ngx-i18nsupport": "^0.17.1",
     "prettier": "2.0.4",
     "supertest": "^4.0.2",
-    "ts-jest": "26.1.4",
+    "ts-jest": "26.4.3",
     "ts-loader": "^8.0.4",
     "ts-node": "~7.0.0",
     "tsconfig-paths": "^3.9.0",
