@@ -115,7 +115,7 @@
     "mock-fs": "^4.13.0",
     "ngx-i18nsupport": "^0.17.1",
     "prettier": "2.0.4",
-    "supertest": "^4.0.2",
+    "supertest": "^6.0.0",
     "ts-jest": "26.1.4",
     "ts-loader": "^8.0.4",
     "ts-node": "~7.0.0",
