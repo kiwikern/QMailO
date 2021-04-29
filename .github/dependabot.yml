@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@angular/service-worker"
+    versions:
+    - 10.2.1
+    - 11.1.1
+  - dependency-name: "@angular-devkit/core"
+    versions:
+    - 11.0.5
+    - 11.1.2
+  - dependency-name: eslint
+    versions:
+    - 7.16.0
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - 4.9.0
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.15
+  - dependency-name: supertest
+    versions:
+    - 6.0.0
